@@ -102,3 +102,80 @@ export const updateCompany = async(req, res) => {
         )
     }
 }
+
+export const Filters = async(req, res) => {
+    try {
+        const filter = req.body.filter
+        const valid = ["years","A-Z","Z-A"]
+
+        console.log(filter);
+        
+
+        if (!valid.includes(filter)){
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'Please select a valid filter'
+                }
+            )
+        }
+
+        if(filter === 'years') {
+            const years = req.body.years
+
+            if(!years) {
+                return res.status(500).send(
+                    {
+                        success: false,
+                        message: "Please add 'years' whit the consult"
+                    }
+                )
+            }
+            
+            const companyYears = await Company.find({ experienceYears: years })
+
+            if(companyYears.length == 0){
+                return res.stauts(404).send(
+                    {
+                        success: false,
+                        message: "Any company with this experience years"
+                    }
+                )
+            }
+
+            return res.status(200).send(
+                {
+                    success: true,
+                    message: "Companies found",
+                    companyYears
+                }
+            )
+        } else if (filter === 'A-Z'){
+            const companies = await Company.find().sort({ name: 1 })
+            return res.status(200).send(
+                {
+                    succes: true,
+                    essage: 'Companies ordened ascendingly',
+                    companies
+                }
+            )
+        } else if (filter === 'Z-A'){
+            const companies = await Company.find().sort({ name: -1 })
+            return res.status(200).send(
+                {
+                    succes: true,
+                    essage: 'Companies ordened descendingly',
+                    companies
+                }
+            )
+        }
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send(
+            {
+                success: false,
+                message: 'General error with Filters function'
+            }
+        )
+    }
+}
