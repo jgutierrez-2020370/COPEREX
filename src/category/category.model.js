@@ -6,7 +6,7 @@ const categorySchema = Schema(
             type: String,
             require: [true, 'Name is required'],
             unique: true,
-            maxLength: [25, `Category name can't exceed 25 characters`]
+            maxLength: [50, `Category name can't exceed 50 characters`]
         }
     },
     {
