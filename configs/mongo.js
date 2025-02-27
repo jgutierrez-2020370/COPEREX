@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import { defaultAdmin } from "../src/admin/admin.controller.js"
 
 export const connect = async()=> {
     try {
@@ -28,6 +29,8 @@ export const connect = async()=> {
                 serverSelectionTimeoutMS: 5000
             }
         )
+
+        defaultAdmin()
         
     } catch (err) {
         console.log('Database connection failed' , err)
