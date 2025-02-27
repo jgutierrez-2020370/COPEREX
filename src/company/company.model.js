@@ -1,4 +1,4 @@
-import { Schema,  model} from "mongoose";
+import { Schema, model } from "mongoose";
 
 const companySchema = Schema(
     {
@@ -8,7 +8,7 @@ const companySchema = Schema(
             unique: true,
             maxLength: [25, `Category name can't exceed 25 characters`]
         },
-        ipact:{
+        impact:{
             type: String,
             required: [true, 'impacto is required'],
             enum: ['alto', 'medio', 'bajo']
@@ -28,7 +28,7 @@ const companySchema = Schema(
             maxLength: [100, 'description must not exceed 100 characters']
         },
         phone:{
-            type: number,
+            type: Number,
             required: [true, 'phone is required'],
             maxLength: [8, 'phone must be 8 characters']
         }
@@ -39,4 +39,4 @@ const companySchema = Schema(
     }
 )
 
-export default model('Category', categorySchema)
+export default model('Company', companySchema)
