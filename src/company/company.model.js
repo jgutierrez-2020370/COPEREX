@@ -20,7 +20,7 @@ const companySchema = Schema(
         },
         category:{
             type: Schema.Types.ObjectId,
-            ref: 'category',
+            ref: 'Category'
         },
         description:{
             type: String,
