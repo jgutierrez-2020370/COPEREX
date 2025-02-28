@@ -20,10 +20,15 @@ export const generateReport = async(req, res) =>{
 
         
         reportSheet.sheet(0).cell("A1").value("Name")
+        reportSheet.sheet(0).column("A").width(25)
         reportSheet.sheet(0).cell("B1").value("Impact")
+        reportSheet.sheet(0).column("B").width(20)
         reportSheet.sheet(0).cell("C1").value("Experience")
+        reportSheet.sheet(0).column("C").width(20)
         reportSheet.sheet(0).cell("D1").value("Category")
+        reportSheet.sheet(0).column("D").width(30)
         reportSheet.sheet(0).cell("E1").value("Description")
+        reportSheet.sheet(0).column("E").width(50)
 
 
 
