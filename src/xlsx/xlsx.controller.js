@@ -5,7 +5,7 @@ import fs from 'fs'
 
 export const generateReport = async(req, res) =>{
     try {
-        const companies = await Company.find()
+        const companies = await Company.find().populate('category', 'name')
 
         const reportSheet = await XlsxPopulate.fromBlankAsync()
         
@@ -13,22 +13,24 @@ export const generateReport = async(req, res) =>{
             reportSheet.sheet(0).cell(rowIndex + 2, 1).value(company.name)
             reportSheet.sheet(0).cell(rowIndex + 2, 2).value(company.impact)
             reportSheet.sheet(0).cell(rowIndex + 2, 3).value(company.experienceYears)
-            reportSheet.sheet(0).cell(rowIndex + 2, 4).value(company.category ? company.category.name : "N/A")
+            reportSheet.sheet(0).cell(rowIndex + 2, 4).value(company.category.name)
             reportSheet.sheet(0).cell(rowIndex + 2, 5).value(company.description)
-            reportSheet.sheet(0).cell(rowIndex + 2, 6).value(company.phone)
+            reportSheet.sheet(0).cell(rowIndex + 2, 6).value(`'${company.phone}`)
         })
 
         
         reportSheet.sheet(0).cell("A1").value("Name")
         reportSheet.sheet(0).column("A").width(25)
         reportSheet.sheet(0).cell("B1").value("Impact")
-        reportSheet.sheet(0).column("B").width(20)
+        reportSheet.sheet(0).column("B").width(15)
         reportSheet.sheet(0).cell("C1").value("Experience")
         reportSheet.sheet(0).column("C").width(20)
         reportSheet.sheet(0).cell("D1").value("Category")
         reportSheet.sheet(0).column("D").width(30)
         reportSheet.sheet(0).cell("E1").value("Description")
         reportSheet.sheet(0).column("E").width(50)
+        reportSheet.sheet(0).cell("F1").value("Phone")
+        reportSheet.sheet(0).column("F").width(20).style("numberFormat", "@")
 
 
 
