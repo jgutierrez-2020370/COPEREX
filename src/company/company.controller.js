@@ -25,11 +25,14 @@ export const createCompany = async (req, res) => {
         
         await company.save()
 
+        const companyPopulate = await company.populate('category', 'name')
+        
+
         return res.send(
             {
                 success: true,  
                 message: 'Company created',
-                company
+                companyPopulate
             }
         )
 
@@ -81,7 +84,7 @@ export const updateCompany = async(req, res) => {
             id,
             data,
             { new: true }
-        )
+        ).populate('category', 'name')
 
         return res.send(
             {
