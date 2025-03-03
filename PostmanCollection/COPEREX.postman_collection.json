@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "0bc5d0a4-5827-4c06-b370-e641b4d9416b",
+		"name": "COPEREX",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37951891"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"token\", data.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "adminLoggin",
+									"value": "Admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "@Admin123@",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3300/v1/Admin/Login",
+							"host": [
+								"localhost"
+							],
+							"port": "3300",
+							"path": [
+								"v1",
+								"Admin",
+								"Login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "GetCategories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3300/v1/Category/",
+							"host": [
+								"localhost"
+							],
+							"port": "3300",
+							"path": [
+								"v1",
+								"Category",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Entretenimiento y Medios",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3300/v1/Category/",
+							"host": [
+								"localhost"
+							],
+							"port": "3300",
+							"path": [
+								"v1",
+								"Category",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "CreateCompany",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Shucos el chino",
+									"type": "text"
+								},
+								{
+									"key": "impact",
+									"value": "bajo",
+									"description": "alto, medio, bajo",
+									"type": "text"
+								},
+								{
+									"key": "experienceYears",
+									"value": "1.5",
+									"description": "años",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "67c0dc78edacf98aa02e2cb5",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Shuqueria",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "13903148",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3300/v1/Company/",
+							"host": [
+								"localhost"
+							],
+							"port": "3300",
+							"path": [
+								"v1",
+								"Company",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCompany",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "ElectroSecure",
+									"type": "text"
+								},
+								{
+									"key": "impact",
+									"value": "alto",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "experienceYears",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "67bfec60b153c2213a150904",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "Empresa de tecnología enfocada en tu necesidad",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone",
+									"value": "9837142",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3300/v1/Company/67c1bb649f775ab9b124faee",
+							"host": [
+								"localhost"
+							],
+							"port": "3300",
+							"path": [
+								"v1",
+								"Company",
+								"67c1bb649f775ab9b124faee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filters",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "filter",
+									"value": "years",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "years",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "filter",
+									"value": "A-Z",
+									"type": "text"
+								},
+								{
+									"key": "filter",
+									"value": "Z-A",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3300/v1/Company/",
+							"host": [
+								"localhost"
+							],
+							"port": "3300",
+							"path": [
+								"v1",
+								"Company",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3300/v1/Report/",
+					"host": [
+						"localhost"
+					],
+					"port": "3300",
+					"path": [
+						"v1",
+						"Report",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
